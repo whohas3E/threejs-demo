@@ -4,6 +4,8 @@
 //  - Camera (the perspective)
 //  - Meshes (Objects in the 3D world)
 //  - Lights
+
+// console.log(process.env.API_KEY);
 const THREE = require("three");
 // console.log(THREE);
 
@@ -129,11 +131,11 @@ function animate() {
     // cube.rotation.x += 0.1;
     // Muck around the axes
     // Increment and decrement the x, y, z
-    cubes.forEach(function(c){
+    cubes.forEach(function (c) {
         c.rotation.x -= 0.01;
         c.rotation.y -= 0.01;
         c.rotation.z -= 0.01;
-    })
+    });
     renderer.render(scene, camera);
     requestAnimationFrame(animate); // Can you call animate as soon as you can
 }
