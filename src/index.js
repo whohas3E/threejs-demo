@@ -105,17 +105,35 @@ light.position.z = 10;
 
 sphere.position.x = 20;
 
+let cubes = [];
+let cubeCount = 500;
+for (let i = 1; i <= cubeCount; i++) {
+    let c = createCube();
+    c.position.x = Math.random() * 400 - 200; // -200 to 200
+    c.position.y = Math.random() * 400 - 200; // -200 to 200
+    c.position.z = Math.random() * 400 - 200; // -200 to 200
+    cubes.push(c);
+}
+console.log(cubes.length);
+
 scene.add(axesHelper);
-scene.add(cube, sphere, light, lightHelper);
+scene.add(cube, sphere, light, lightHelper, ...cubes);
 
 renderer.render(scene, camera);
 
 function animate() {
-    // light.position.x += 0.1;
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+    cube.rotation.z += 0.01;
     // console.log("animate ran");
     // cube.rotation.x += 0.1;
     // Muck around the axes
     // Increment and decrement the x, y, z
+    cubes.forEach(function(c){
+        c.rotation.x -= 0.01;
+        c.rotation.y -= 0.01;
+        c.rotation.z -= 0.01;
+    })
     renderer.render(scene, camera);
     requestAnimationFrame(animate); // Can you call animate as soon as you can
 }
