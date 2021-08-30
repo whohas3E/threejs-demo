@@ -18,6 +18,7 @@ function createRenderer() {
     output.appendChild(renderer.domElement); //domElement is canvas of Threejs. log (render)
     return renderer;
 }
+
 function createScene() {
     return new THREE.Scene();
 }
@@ -41,12 +42,28 @@ function createAxesHelper() {
     return axesHelper;
 }
 
+function getRandomColor() {
+    let colors = [
+        "dodgerblue",
+        "tomato",
+        "limegreen",
+        "rebeccapurple",
+        "gold",
+        "lavender",
+        "lightcoral",
+        "papayawhip",
+    ];
+    let randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
+}
+getRandomColor();
+
 function createCube() {
     // Geometry - The actual shape/skeleton of the object
     let geometry = new THREE.BoxGeometry(4, 4, 4);
     // Material - The colour/how it interacts with light
     let material = new THREE.MeshLambertMaterial({
-        color: "tomato",
+        color: getRandomColor(),
     });
     // Create a mesh by combining the geometry and the material
     let mesh = new THREE.Mesh(geometry, material);
@@ -57,14 +74,14 @@ function createCube() {
 function createSphere() {
     let geo = new THREE.SphereGeometry(4, 30, 30);
     let mat = new THREE.MeshLambertMaterial({
-        color: "dodgerblue",
+        color: getRandomColor(),
     });
     let mesh = new THREE.Mesh(geo, mat);
     return mesh;
 }
 
 function createLight() {
-    let light = new THREE.PointLight("white", 1);
+    let light = new THREE.PointLight("white", 1.5);
     return light;
 }
 
