@@ -8,9 +8,12 @@ const THREE = require("three");
 // console.log(THREE);
 
 function createRenderer() {
-    let renderer = new THREE.WebGLRenderer();
+    let renderer = new THREE.WebGLRenderer({
+        antialias: true,
+    });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor("#16161d");
+    renderer.setClearColor("#16161d"); //Eigengrau
+    renderer.setPixelRatio(window.devicePixelRatio);
     let output = document.querySelector("#output");
     output.appendChild(renderer.domElement); //domElement is canvas of Threejs. log (render)
     return renderer;
@@ -91,14 +94,13 @@ scene.add(cube, sphere, light, lightHelper);
 renderer.render(scene, camera);
 
 function animate() {
-    light.position.x += 0.1;
+    // light.position.x += 0.1;
     // console.log("animate ran");
     // cube.rotation.x += 0.1;
     // Muck around the axes
     // Increment and decrement the x, y, z
     renderer.render(scene, camera);
     requestAnimationFrame(animate); // Can you call animate as soon as you can
-
 }
 
 animate();
